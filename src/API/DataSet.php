@@ -140,9 +140,9 @@ class DataSet
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function importDataSet($id, $csv)
+    public function importDataSet($id, $csv, $updateMethod = null)
     {
-        $response = $this->Client->WebClient->put("/v1/datasets/$id/data", [
+        $response = $this->Client->WebClient->put("/v1/datasets/$id/data".($updateMethod ? "?updateMethod=" . $updateMethod : ""), [
             'headers' => [
                 'Authorization' => 'Bearer '.$this->Client->getToken(),
                 'Content-Type'  => 'text/csv',
